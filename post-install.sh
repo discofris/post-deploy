@@ -1,17 +1,23 @@
 #!/bin/bash
-
+#
 # Post Deploy Script for a new Debian 9 box
-# Change SSHd ..
+#
+# Enable root login ... yead I know ... ssshtd!
 sed -i 's/#PermitRootLogin prohibit-password /PermitRootLogin yes/' /etc/ssh/sshd_config
 systemctl restart sshd
 
-# Change grub ...
+# Change GRUB options ...
 sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet" /GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
 update-grub
 
-# Disable floppy
+# Blacklist floppy ...
 echo "blacklist floppy" | sudo tee /etc/modprobe.d/blacklist-floppy.conf
 sudo rmmod floppy
+
+# Blacklist SMBus
+echo "blacklist i2c-piix4" | sudo tee /etc/modprobe.d/blacklist-smbus.conf
+
+# Apply ...
 sudo update-initramfs -u
 
 # Necessary tools ...
