@@ -1,4 +1,4 @@
-
+#!/bin/bash
 # Change SSHd ..
 sed -i 's/#PermitRootLogin prohibit-password /PermitRootLogin yes/' /etc/ssh/sshd_config
 systemctl restart sshd
@@ -13,7 +13,7 @@ sudo rmmod floppy
 sudo update-initramfs -u
 
 # Necessary tools ...
-apt-get install -y curl sudo build-essential linux-headers-$(uname -r) open-vm-tools software-properties-common apt-transport-https net-tools
+apt-get install curl sudo build-essential linux-headers-$(uname -r) open-vm-tools software-properties-common apt-transport-https net-tools htop git
 
 # Install Webmin
 curl -s http://www.webmin.com/jcameron-key.asc | apt-key add -
