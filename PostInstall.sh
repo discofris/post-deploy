@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# Post Deploy Script for a new Debian 9 box
 # Change SSHd ..
 sed -i 's/#PermitRootLogin prohibit-password /PermitRootLogin yes/' /etc/ssh/sshd_config
 systemctl restart sshd
