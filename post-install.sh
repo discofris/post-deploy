@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Post Deploy Script for a new Debian 9 box
+# Post Deploy Script for a new Debian 9 box running on a VMware Host
 #
 # Enable root login ... yead I know ... ssshtd!
 sed -i 's/#PermitRootLogin prohibit-password /PermitRootLogin yes/' /etc/ssh/sshd_config
